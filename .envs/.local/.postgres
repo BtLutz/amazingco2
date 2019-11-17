@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=amazingco2
+POSTGRES_USER=JNIzxWsCUJrZDwVVaNCIdAgKShezJcrQ
+POSTGRES_PASSWORD=1RSjr0HBG1kQnpHJktvuBClSlrJevx3aZYHGOpR81BvloUmgZLmwJdfszpSzCdgf
