@@ -27,8 +27,3 @@ class NodeCreate(APIView):
 class NodeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = TreeNode.objects.all()
     serializer_class = TreeNodeSerializer
-    #
-    # def patch(self, request, format=None):
-    #     serializer = TreeNodeSerializer(data=request.data)
-    #     if not serializer.is_valid():
-    #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
