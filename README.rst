@@ -1,7 +1,93 @@
 amazingco2
 ==========
 
-This is a code sample for TradeShift.
+This is a code sample for TradeShift. Because I know you'll be building with Docker, I'll include the instructions for how to build and run the app below.::
+
+  $ docker-compose -f local.yml build
+  $ docker-compose -f local.yml up
+
+You can browse the API visually by navigating to http://localhost:8000/api/nodes/1/. You can also use cURL::
+
+  $ curl -X GET http://localhost:8000/api/nodes/1/ | json_pp
+
+For the response::
+
+  {
+    "pk": 1,
+    "descendants": [],
+    "root": null,
+    "level": 0,
+    "parent": null
+  }
+  
+To make a new node with its parent set as the root node, you can run the following cURL request::
+
+  $ curl -X POST http://localhost:8000/api/nodes/ -H 'Content-Type: application/json' -d '{"parent": 1}' | json_pp
+
+You should get back the following response body::
+
+  {
+    "pk": 2,
+    "descendants": [],
+    "root": 1,
+    "level": 1,
+    "parent": 1
+  }
+
+Go ahead and re-run the first cURL command again. You'll get back::
+
+  {
+   "parent" : null,
+   "descendants" : [
+      {
+         "parent" : 1,
+         "pk" : 2,
+         "level" : 1,
+         "root" : 1
+      }
+   ],
+   "level" : 0,
+   "pk" : 1,
+   "root" : null
+  }
+
+If you run the POST command again, but this time set the parent attribute as 2, you'll get back the following::
+
+  {
+    "pk": 3,
+    "descendants": [],
+    "root": 1,
+    "level": 2,
+    "parent": 2
+  }
+
+To update a node, you can use the following cURL request::
+
+  $ curl -X PATCH http://localhost:8000/api/nodes/3/ -H 'Content-Type: application/json' -d '{"parent": 1}' | json_pp
+
+For the following response::
+
+  {
+    "parent": 1,
+    "pk": 3,
+    "descendants": [],
+    "root": 1,
+    "level": 1
+  }
+
+You can view the root node again::
+
+  $ curl -X GET http://localhost:8000/api/nodes/1/
+
+For the following response::
+
+  {
+    "parent": null,
+    "pk": 1,
+    "descendants": [2, 3],
+    "root": null,
+    "level": 0
+  }
 
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
      :target: https://github.com/pydanny/cookiecutter-django/
