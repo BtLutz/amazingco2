@@ -1,7 +1,11 @@
 amazingco2
 ==========
 
-This is a code sample for TradeShift.
+This is a code sample for TradeShift. Because I know you'll be building with Docker, I'll include the instructions for how to build and run the app below.
+
+::
+  $ docker-compose -f local.yml build
+  $ docker-compose -f local.yml up
 
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
      :target: https://github.com/pydanny/cookiecutter-django/
